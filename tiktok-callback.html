@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TikTok Authorization Code</title>
+<style>
+body{font-family:system-ui,-apple-system,sans-serif;max-width:640px;margin:40px auto;padding:0 16px;text-align:center;color:#111}
+.box{background:#f4f4f4;border-radius:12px;padding:20px;margin:20px 0;word-break:break-all;user-select:all;font-size:18px;font-weight:600}
+button{font-size:18px;padding:12px 28px;border:none;border-radius:8px;background:#000;color:#fff;cursor:pointer}
+p.hint{color:#555}
+</style>
+</head>
+<body>
+<h2>OK — TikTok Authorized</h2>
+<p class="hint">Copy the code below and send it to your assistant:</p>
+<div class="box" id="code">waiting…</div>
+<button id="cp">Copy Code</button>
+<p class="hint" id="err"></p>
+<script>
+var q=new URLSearchParams(location.search),c=q.get('code'),e=q.get('error')||q.get('error_description');
+if(c){document.getElementById('code').textContent=c;}
+else{document.getElementById('code').textContent='(no code received)';document.getElementById('err').textContent='Error: '+(e||'authorization failed or was cancelled');}
+document.getElementById('cp').onclick=function(){var t=document.getElementById('code').textContent;if(navigator.clipboard){navigator.clipboard.writeText(t);}this.textContent='Copied — now send it to your assistant';};
+</script>
+</body>
+</html>
